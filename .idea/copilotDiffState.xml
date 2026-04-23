@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/test (snapshot).yml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/test (snapshot).yml" />
+              <option name="originalContent" value="name: Run Tests&#10;&#10;on:&#10;  push:&#10;    branches: [ main, develop ]&#10;  pull_request:&#10;    branches: [ main, develop ]&#10;&#10;jobs:&#10;  test:&#10;    runs-on: ubuntu-latest&#10;&#10;    strategy:&#10;      matrix:&#10;        java-version: ['25']&#10;&#10;    steps:&#10;    - uses: actions/checkout@v3&#10;&#10;    - name: Set up JDK ${{ matrix.java-version }}&#10;      uses: actions/setup-java@v3&#10;      with:&#10;        java-version: ${{ matrix.java-version }}&#10;        distribution: 'temurin'&#10;        cache: maven&#10;&#10;    - name: Build with Maven&#10;      run: mvn clean compile&#10;&#10;    - name: Run tests with Maven&#10;      run: mvn test&#10;&#10;    - name: Upload Test Results&#10;      if: always()&#10;      uses: actions/upload-artifact@v3&#10;      with:&#10;        name: test-results-java-${{ matrix.java-version }}&#10;        path: target/surefire-reports/&#10;&#10;" />
+              <option name="updatedContent" value="name: Run Tests&#10;&#10;on:&#10;  push:&#10;    branches: [ main, develop ]&#10;  pull_request:&#10;    branches: [ main, develop ]&#10;&#10;jobs:&#10;  test:&#10;    runs-on: ubuntu-latest&#10;&#10;    strategy:&#10;      matrix:&#10;        java-version: ['25']&#10;&#10;    steps:&#10;    - uses: actions/checkout@v3&#10;&#10;    - name: Set up JDK ${{ matrix.java-version }}&#10;      uses: actions/setup-java@v3&#10;      with:&#10;        java-version: ${{ matrix.java-version }}&#10;        distribution: 'temurin'&#10;        cache: maven&#10;&#10;    - name: Build with Maven&#10;      run: mvn clean compile&#10;&#10;    - name: Run tests with Maven&#10;      run: mvn test&#10;&#10;    - name: Upload Test Results&#10;      if: always()&#10;      uses: actions/upload-artifact@v4&#10;      with:&#10;        name: test-results-java-${{ matrix.java-version }}&#10;        path: target/surefire-reports/&#10;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
