@@ -11,8 +11,7 @@ import org.openqa.selenium.devtools.v147.network.Network;
 import org.openqa.selenium.devtools.v147.network.model.ConnectionType;
 import org.openqa.selenium.devtools.v147.performance.Performance;
 import org.openqa.selenium.devtools.v147.performance.model.Metric;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -33,10 +32,10 @@ public class OpenBrowserTest {
 
     @Test
     void openBrowserWithHeadlessMode(){
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless=new");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless=new");
 
-        WebDriver driver = new EdgeDriver(edgeOptions);
+        WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.selenium.dev/");
         Assert.assertEquals(driver.getTitle(),"Selenium");
         driver.quit();
