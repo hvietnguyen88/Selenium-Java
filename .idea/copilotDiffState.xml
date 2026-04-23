@@ -12,6 +12,15 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/heroku/TestCases.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/heroku/TestCases.java" />
+              <option name="originalContent" value="package heroku;&#10;&#10;import org.openqa.selenium.By;&#10;import org.openqa.selenium.WebDriver;&#10;import org.openqa.selenium.edge.EdgeDriver;&#10;import org.openqa.selenium.edge.EdgeOptions;&#10;import org.testng.Assert;&#10;import org.testng.annotations.Test;&#10;&#10;public class TestCases {&#10;    @Test&#10;    public void loginWithValidCredentials() {&#10;        EdgeOptions edgeOptions = new EdgeOptions();&#10;        edgeOptions.addArguments(&quot;--headless=new&quot;);&#10;&#10;        WebDriver driver = new EdgeDriver(edgeOptions);&#10;        driver.get(&quot;https://the-internet.herokuapp.com/login&quot;);&#10;&#10;        driver.findElement(By.id(&quot;username&quot;)).sendKeys(&quot;tomsmith&quot;);&#10;        driver.findElement(By.id(&quot;password&quot;)).sendKeys(&quot;SuperSecretPassword!&quot;);&#10;        driver.findElement(By.xpath(&quot;//button[@type='submit']&quot;)).click();&#10;&#10;        Assert.assertEquals(driver.getCurrentUrl(), &quot;https://the-internet.herokuapp.com/secure&quot;);&#10;        driver.quit();&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="package heroku;&#10;&#10;import org.openqa.selenium.By;&#10;import org.openqa.selenium.WebDriver;&#10;import org.openqa.selenium.chrome.ChromeDriver;&#10;import org.openqa.selenium.chrome.ChromeOptions;&#10;import org.testng.Assert;&#10;import org.testng.annotations.Test;&#10;&#10;public class TestCases {&#10;    @Test&#10;    public void loginWithValidCredentials() {&#10;        ChromeOptions chromeOptions = new ChromeOptions();&#10;        chromeOptions.addArguments(&quot;--headless=new&quot;);&#10;&#10;        WebDriver driver = new ChromeDriver(chromeOptions);&#10;        driver.get(&quot;https://the-internet.herokuapp.com/login&quot;);&#10;&#10;        driver.findElement(By.id(&quot;username&quot;)).sendKeys(&quot;tomsmith&quot;);&#10;        driver.findElement(By.id(&quot;password&quot;)).sendKeys(&quot;SuperSecretPassword!&quot;);&#10;        driver.findElement(By.xpath(&quot;//button[@type='submit']&quot;)).click();&#10;&#10;        Assert.assertEquals(driver.getCurrentUrl(), &quot;https://the-internet.herokuapp.com/secure&quot;);&#10;        driver.quit();&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
