@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class LoginWithValidCredentials {
     @Test
-    public void loginWithValidCredentials() {
+    void loginWithValidCredentials() {
 
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--headless=new");
