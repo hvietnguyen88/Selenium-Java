@@ -24,11 +24,8 @@ public class CheckBoxes {
 
     @Test
     void testCheckboxes() {
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless=new");
-
         WebDriverManager.edgedriver().setup();
-        WebDriver driver = new EdgeDriver(edgeOptions);
+        WebDriver driver = new EdgeDriver();
         driver.get("https://the-internet.herokuapp.com/checkboxes");
 
         WebElement checkbox1 = driver.findElement(By.xpath("//form[@id='checkboxes']/input[1]"));

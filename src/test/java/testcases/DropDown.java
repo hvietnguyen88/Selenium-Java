@@ -13,11 +13,8 @@ import org.testng.annotations.Test;
 public class DropDown {
     @Test
     void testDropDown() {
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless=new");
-
         WebDriverManager.edgedriver().setup();
-        WebDriver driver = new EdgeDriver(edgeOptions);
+        WebDriver driver = new EdgeDriver();
         driver.get("https://the-internet.herokuapp.com/dropdown");
 
         Select dropdown = new Select(driver.findElement(By.id("dropdown")));

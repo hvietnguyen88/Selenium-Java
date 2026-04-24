@@ -10,11 +10,7 @@ import org.testng.annotations.Test;
 public class LoginWithValidCredentials {
     @Test
     void loginWithValidCredentials() {
-
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless=new");
-
-        WebDriver driver = new EdgeDriver(edgeOptions);
+        WebDriver driver = new EdgeDriver();
         driver.get("https://the-internet.herokuapp.com/login");
 
         driver.findElement(By.id("username")).sendKeys("tomsmith");
