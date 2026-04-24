@@ -113,7 +113,7 @@ src/
 ├── test/java/
 │   ├── heroku/
 │   │   └── OpenBrowserTest.java
-│   └── testcases/
+│   └── heroku_testcases/
 │       └── LoginWithValidCredentials.java
 └── resources/
 pom.xml
