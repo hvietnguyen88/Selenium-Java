@@ -1,4 +1,4 @@
-package heroku_testcases;
+package heroku;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,9 +6,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginWithValidCredentials {
+public class LoginTest {
     @Test
-    void loginWithValidCredentials() {
+    void successfullyWithValidCredentials() {
         WebDriver driver = new EdgeDriver();
         driver.get("https://the-internet.herokuapp.com/login");
 

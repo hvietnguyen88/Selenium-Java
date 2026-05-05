@@ -1,6 +1,5 @@
-package heroku_testcases;
+package heroku;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CheckBoxes {
+public class CheckBoxesTest {
     public static void checkCheckBox(WebElement checkbox) {
         if(!checkbox.isSelected()) {
             checkbox.click();
@@ -22,8 +21,7 @@ public class CheckBoxes {
     }
 
     @Test
-    void testCheckboxes() {
-        WebDriverManager.edgedriver().setup();
+    void successfullyCheckUncheckCheckboxes() throws InterruptedException {
         WebDriver driver = new EdgeDriver();
         driver.get("https://the-internet.herokuapp.com/checkboxes");
 
@@ -32,8 +30,11 @@ public class CheckBoxes {
 
         checkCheckBox(checkbox1);
         Assert.assertTrue(checkbox1.isSelected());
-        checkCheckBox(checkbox2);
-        Assert.assertTrue(checkbox2.isSelected());
+        Thread.sleep(1000);
+
+        uncheckCheckBox(checkbox2);
+        Assert.assertFalse(checkbox2.isSelected());
+        Thread.sleep(1000);
 
         driver.quit();
     }

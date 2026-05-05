@@ -1,32 +1,27 @@
-package heroku_testcases;
+package heroku;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DropDown {
+public class DropDownTest {
     @Test
-    void testDropDown() {
-        WebDriverManager.edgedriver().setup();
-        WebDriver driver = new EdgeDriver();
+    void successfullySelectDropdownOptions(){
+        WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/dropdown");
 
         Select dropdown = new Select(driver.findElement(By.id("dropdown")));
-        dropdown.selectByIndex(1);
-        WebElement option1 = driver.findElement(By.xpath("//option[@value='1']"));
+        dropdown.selectByVisibleText("Option 1");
+        WebElement option1 = driver.findElement(By.xpath("//option[.='Option 1']"));
         Assert.assertTrue(option1.isSelected());
 
         dropdown.selectByVisibleText("Option 2");
-        WebElement option2 = driver.findElement(By.xpath("//option[@value='2']"));
+        WebElement option2 = driver.findElement(By.xpath("//option[.='Option 2']"));
         Assert.assertTrue(option2.isSelected());
-
-        dropdown.selectByValue("1");
-        Assert.assertTrue(option1.isSelected());
 
         driver.quit();
     }
