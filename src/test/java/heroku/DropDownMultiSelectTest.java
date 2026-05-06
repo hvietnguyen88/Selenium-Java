@@ -16,7 +16,7 @@ public class DropDownMultiSelectTest {
      *   *  - Green and Red are selected.
      */
     @Test
-    void ableToSelectMultiOptions() {
+    void successfullySelectMultiOptions() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/select-menu");
 
