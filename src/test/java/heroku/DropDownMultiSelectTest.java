@@ -20,13 +20,15 @@ public class DropDownMultiSelectTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/select-menu");
 
-        driver.findElement(By.xpath("//div[contains(text(), 'Select...')]")).click();
-        driver.findElement(By.xpath("//div[contains(text(), 'Green')]")).click();
-        driver.findElement(By.xpath("//div[contains(text(), 'Red')]")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'Green')]")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'Red')]")).isSelected());
+        driver.findElement(By.id("react-select-4-input")).click();
+        driver.findElement(By.xpath("//div[text()='Green']")).click();
+        driver.findElement(By.xpath("//div[text()='Red']")).click();
+        driver.findElement(By.xpath("//*[contains(text(),'Multiselect drop down')]")).click();
 
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Green']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Red']")).isDisplayed());
 
+        driver.quit();
     }
 
 }
