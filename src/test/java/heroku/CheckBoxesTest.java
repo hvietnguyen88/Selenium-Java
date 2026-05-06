@@ -21,7 +21,7 @@ public class CheckBoxesTest {
     }
 
     @Test
-    public void successfullyCheckUncheckCheckboxes() throws InterruptedException {
+    void successfullyCheckUncheckCheckboxes() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/checkboxes");
 
