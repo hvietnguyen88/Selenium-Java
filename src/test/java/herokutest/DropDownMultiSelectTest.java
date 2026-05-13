@@ -1,4 +1,4 @@
-package heroku;
+package herokutest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ public class DropDownMultiSelectTest {
     /**
      * TC: AbleToSelectMultiOPtions
      * 1. Open browser.
-     * 2. Navigate to https://demoqa.com/select-menu.
+     * 2. Navigate to <a href="https://demoqa.com/select-menu">...</a>.
      * 3. Select Green and Red in Multiselect dropdown.
      * 4. Verify:
      *   *  - Green and Red are selected.

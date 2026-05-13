@@ -1,4 +1,4 @@
-package heroku;
+package herokutest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -104,28 +104,37 @@ public class OpenBrowserTest {
     }
 
     @Test
-    void interceptionNetwork(){
+    void interceptionNetwork() {
         WebDriver driver = new ChromeDriver();
         DevTools devTool = ((HasDevTools) driver).getDevTools();
-
         devTool.createSession();
-        devTool.send(Network.enable(Optional.empty(), Optional.empty(),Optional.empty(),Optional.empty(),Optional.empty()));
-
+        devTool.send(Network.enable(
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()
+        ));
         devTool.addListener(Network.requestWillBeSent(), requestSent -> {
-            System.out.println("Request URL => " + requestSent.getRequest().getUrl());
-            System.out.println("Request Method => " + requestSent.getRequest().getMethod());
-            System.out.println("Request Headers => " + requestSent.getRequest().getHeaders().toString());
+            System.out.println("Request URL => "
+                    + requestSent.getRequest().getUrl());
+            System.out.println("Request Method => "
+                    + requestSent.getRequest().getMethod());
+            System.out.println("Request Headers => "
+                    + requestSent.getRequest().getHeaders());
             System.out.println("------------------------------------------------------");
         });
-
         devTool.addListener(Network.responseReceived(), responseReceived -> {
-            System.out.println("Response Url => " + responseReceived.getResponse().getUrl());
-            System.out.println("Response Status => " + responseReceived.getResponse().getStatus());
-            System.out.println("Response Headers => " + responseReceived.getResponse().getHeaders().toString());
-            System.out.println("Response MIME Type => " + responseReceived.getResponse().getMimeType().toString());
+            System.out.println("Response Url => "
+                    + responseReceived.getResponse().getUrl());
+            System.out.println("Response Status => "
+                    + responseReceived.getResponse().getStatus());
+            System.out.println("Response Headers => "
+                    + responseReceived.getResponse().getHeaders());
+            System.out.println("Response MIME Type => "
+                    + responseReceived.getResponse().getMimeType());
             System.out.println("------------------------------------------------------");
         });
-
         driver.get("https://selenium.dev");
         driver.quit();
     }
@@ -148,23 +157,23 @@ public class OpenBrowserTest {
     }
 
     @Test
-    void simulate3GNetworkCondition(){
+    void simulate3GNetworkCondition() {
         ChromeDriver driver = new ChromeDriver();
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
-        // Enable Network emulation
-        devTools.send(Network.enable(Optional.of(100000000), Optional.empty(), Optional.empty(),Optional.empty(),Optional.empty()));
-
-        // Set network conditions to emulate 3G or 4G
-        devTools.send(Network.emulateNetworkConditions(
+        devTools.send(Network.enable(
+                Optional.of(100000000),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()
+        ));
+        devTools.send(Network.overrideNetworkState(
                 false,
                 100,
                 75000,
                 25000,
-                Optional.of(ConnectionType.CELLULAR2G),
-                Optional.of(0),
-                Optional.of(0),
-                Optional.of(false)
+                Optional.of(ConnectionType.CELLULAR3G)
         ));
         driver.get("https://selenium.dev");
         driver.quit();

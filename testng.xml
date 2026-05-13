@@ -3,7 +3,7 @@
 <suite name="Selenium Test Suite">
   <test name="Headless Browser Test">
     <classes>
-      <class name="heroku.OpenBrowserTest">
+      <class name="herokutest.OpenBrowserTest">
         <methods>
           <include name="openBrowserWithHeadlessMode"/>
         </methods>

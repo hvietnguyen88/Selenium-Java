@@ -108,13 +108,17 @@ mvn test -Dtest=OpenBrowserTest
 
 ```
 src/
-├── main/java/tvn/lt2602/
-│   └── Main.java
-├── test/java/
-│   ├── heroku/
-│   │   └── OpenBrowserTest.java
-│   └── heroku_testcases/
-│       └── LoginWithValidCredentials.java
+├── main/java/heroku/
+│   └── WebTableUtils.java
+├── test/java/herokutest/
+│   ├── CheckBoxesTest.java
+│   ├── CheckboxTestNG.java
+│   ├── DropDownMultiSelectTest.java
+│   ├── DropDownTest.java
+│   ├── HyperlinkTest.java
+│   ├── LoginTest.java
+│   ├── OpenBrowserTest.java
+│   └── WebTableTest.java
 └── resources/
 pom.xml
 testng.xml
@@ -124,8 +128,11 @@ testng.xml
 
 Browser options can be customized in the test files. Headless mode is configured via ChromeOptions:
 ```java
-ChromeOptions chromeOptions = new ChromeOptions();
-chromeOptions.addArguments("--headless=new");
+public void setupHeadlessChrome() {
+    ChromeOptions chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments("--headless=new");
+    WebDriver driver = new ChromeDriver(chromeOptions);
+}
 ```
 
 ## 📄 License
