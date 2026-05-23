@@ -1,0 +1,27 @@
+<suite name="DemoQA" verbose="1">
+    <test name="MultiSelectOptions-Chrome">
+        <parameter name="browserName" value="chrome"/>
+        <groups>
+            <run>
+                <exclude name="ignore"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="herokutest.DropdownMultiSelectTest"/>
+        </classes>
+    </test>
+
+<!--    <test name="MultiSelectOptions-Firefox">-->
+<!--        <parameter name="browserName" value="Firefox"/>-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <exclude name="ignore"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="herokutest.DropdownMultiSelectTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

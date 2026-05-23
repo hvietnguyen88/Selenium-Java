@@ -1,73 +1,49 @@
 package herokupages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.locators.RelativeLocator;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static common.Browsers.*;
+
 public class DropdownMultiSelectPage {
-    WebDriver driver;
 
-    // Constructor
-    public DropdownMultiSelectPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    // Locators
     By dropdownBox = By.id("react-select-4-input");
-    By allOptions = By.xpath("//div[contains(@class,'option')]");
-    By singleOption(String text) {return By.xpath("//div[text()='" + text + "']");}
     By selectedValues = By.xpath("//div[contains(@class,'multiValue')]");
     By dropdownBoxTitle = By.xpath("//*[contains(text(),'Multiselect drop down')]");
 
-    // Actions
     public void openPage() {
-        driver.get("https://demoqa.com/select-menu");
+        visit("https://demoqa.com/select-menu");
     }
 
     private void openDropdownBox() {
-        driver.findElement(dropdownBox).click();
+        click(dropdownBox);
     }
 
     private void closeDropdownBox() {
-        driver.findElement(dropdownBoxTitle).click();
+        click(dropdownBoxTitle);
     }
 
-    public List<String> getAllOptions() {
-        openDropdownBox();
-        List<WebElement> elements = driver.findElements(allOptions);
-        List<String> allOptions = new ArrayList<>();
-        for (WebElement element : elements) {
-            allOptions.add(element.getText());
-        }
-        closeDropdownBox();
-        return allOptions;
-    }
-
-    public void selectAllOptions() {
-        openDropdownBox();
-        for (WebElement option : driver.findElements(allOptions)) {
-            option.click();
-        }
-        closeDropdownBox();
-    }
-
-    public void selectMultiOptions(String... values) {
+    public void selectMultiOptions(String[] values) {
         openDropdownBox();
         for (String value : values) {
-            driver.findElement(singleOption(value)).click();
+            By option = RelativeLocator
+                    .with(By.xpath(String.format("//div[.='%s']",value)))
+                    .below(dropdownBoxTitle);
+            click(option);
         }
         closeDropdownBox();
     }
 
     public List<String> getSelectedOptions() {
-        List<WebElement> elements = driver.findElements(selectedValues);
-        List<String> selectedOptions = new ArrayList<>();
-        for (WebElement element : elements) {
-            selectedOptions.add(element.getText());
+        return all(selectedValues).stream().map(WebElement::getText).toList();
+    }
+
+    public void removeOptions(String[] options) {
+        for (String option : options) {
+            click(By.cssSelector(String.format("[aria-label=\"Remove %s\"]",option)));
         }
-        return selectedOptions;
     }
 }

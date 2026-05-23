@@ -1,70 +1,65 @@
 package herokutest;
 
 import herokupages.DropdownMultiSelectPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
 import java.util.List;
 
+import static common.Browsers.*;
+
 public class DropdownMultiSelectTest {
-    WebDriver driver;
     DropdownMultiSelectPage dropdownMultiSelectPage;
 
+    @Parameters({"browserName"})
     @BeforeClass
-    void setup() {
-        driver = new ChromeDriver();
-        dropdownMultiSelectPage = new DropdownMultiSelectPage(driver);
+    void setup(String browserName) {
+        openBrowser(browserName);
+        dropdownMultiSelectPage = new DropdownMultiSelectPage();
+
+    }
+
+    @BeforeMethod
+    void open() {
         dropdownMultiSelectPage.openPage();
     }
 
-//    @Test
-//    void successfullySelectAllOptions() {
-//        List<String> expected = dropdownMultiSelectPage.getAllOptions();
-//        dropdownMultiSelectPage.selectAllOptions();
-//        List<String> actual = dropdownMultiSelectPage.getSelectedOptions();
-//        Assert.assertEqualsNoOrder(actual.toArray(), expected.toArray());
-//        driver.quit();
-//    }
+    @DataProvider(name="expected")
+    Object[][] testData() {
+        return new Object[][] {
+                {new String[]{"Green", "Red", "Blue", "Black"}},
+                {new String[]{"Green", "Red", "Blue"}},
+                {new String[]{"Green", "Red"}},
+                {new String[]{"Green"}}
+        };
+    }
 
-    @Test
-    void successfullySelectMultiOptions() {
-        String[] expected = {"Green", "Red", "Blue"};
+    @Test(dataProvider="expected")
+    void successfullySelectOptions(String[] expected) {
         dropdownMultiSelectPage.selectMultiOptions(expected);
         List<String> actual = dropdownMultiSelectPage.getSelectedOptions();
         Assert.assertEqualsNoOrder(actual.toArray(), expected);
     }
 
-    @AfterClass(alwaysRun = true)
-    void tearDown() {
-        driver.quit();
+    @Test(dataProvider="expected")
+    void successfullyRemoveOptions(String[] expected) throws InterruptedException {
+        dropdownMultiSelectPage.selectMultiOptions(new String[]{"Green", "Red", "Blue", "Black"});
+        dropdownMultiSelectPage.removeOptions(expected);
+        Thread.sleep(1000);
+        List<String> actual = dropdownMultiSelectPage.getSelectedOptions();
+        Assert.assertEquals(actual.size(), 4-expected.length);
     }
 
-    //    /**
-//     * TC: AbleToSelectMultiOPtions
-//     * 1. Open browser.
-//     * 2. Navigate to <a href="https://demoqa.com/select-menu">...</a>.
-//     * 3. Select Green and Red in Multiselect dropdown.
-//     * 4. Verify:
-//     *   *  - Green and Red are selected.
-//     */
-//    @Test
-//    void successfullySelectMultiOptions() {
-//        WebDriver driver = new ChromeDriver();
-//        driver.get("https://demoqa.com/select-menu");
-//
-//        driver.findElement(By.id("react-select-4-input")).click();
-//        driver.findElement(By.xpath("//div[text()='Green']")).click();
-//        driver.findElement(By.xpath("//div[text()='Red']")).click();
-//        driver.findElement(By.xpath("//*[contains(text(),'Multiselect drop down')]")).click();
-//
-//        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Green']")).isDisplayed());
-//        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Red']")).isDisplayed());
-//
-//        driver.quit();
-//    }
+    @AfterMethod
+    void clearUp(ITestResult testResult) {
+        if (!testResult.isSuccess()) {
+            captureScreenshot(testResult.getMethod().toString());
+        }
+    }
 
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
+        quit();
+    }
 }
