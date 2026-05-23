@@ -23,11 +23,17 @@ Copy
         driver.get("https://the-internet.herokuapp.com/nested_frames");
 
         String leftText =  driver.switchTo().frame("frame-top")
-                .switchTo().frame("frame-left").findElement(By.xpath("//body")).getText();
+                .switchTo()
+                .frame("frame-left")
+                .findElement(By.xpath("//body"))
+                .getText();
         Assert.assertEquals(leftText, "LEFT");
 
         String middleText =  driver.switchTo().parentFrame()
-                .switchTo().frame("frame-middle").findElement(By.xpath("//body")).getText();
+                .switchTo()
+                .frame("frame-middle")
+                .findElement(By.xpath("//body"))
+                .getText();
         Assert.assertEquals(middleText, "MIDDLE");
 
         String rightText =  driver.switchTo().parentFrame()
