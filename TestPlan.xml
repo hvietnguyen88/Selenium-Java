@@ -12,16 +12,16 @@
         </classes>
     </test>
 
-<!--    <test name="MultiSelectOptions-Firefox">-->
-<!--        <parameter name="browserName" value="Firefox"/>-->
-<!--        <groups>-->
-<!--            <run>-->
-<!--                <exclude name="ignore"/>-->
-<!--            </run>-->
-<!--        </groups>-->
+    <test name="MultiSelectOptions-Firefox">
+        <parameter name="browserName" value="Firefox"/>
+        <groups>
+            <run>
+                <exclude name="ignore"/>
+            </run>
+        </groups>
 
-<!--        <classes>-->
-<!--            <class name="herokutest.DropdownMultiSelectTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+        <classes>
+            <class name="herokutest.DropdownMultiSelectTest"/>
+        </classes>
+    </test>
 </suite>
