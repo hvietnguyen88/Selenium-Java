@@ -26,11 +26,6 @@ public class TablePage {
         List<WebElement> rows = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr"));
         for (WebElement row : rows) {
             String[] cells = row.getText().split(" ");
-//            Person person = new Person();
-//            person.setLastName(cells[0]);
-//            person.setFirstName(cells[1]);
-//            person.setDue(cells[3]);
-//            personList.add(person);
             personList.add(new Person(cells[0], cells[1], cells[3]));
         }
     }

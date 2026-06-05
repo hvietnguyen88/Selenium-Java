@@ -9,20 +9,6 @@ public class Person {
         this.due = due;
     }
 
-    public Person() {}
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setDue(String due) {
-        this.due = due;
-    }
-
     public String getFullName() {
         return String.format("%s %s", firstName, lastName);
     }
